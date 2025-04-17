@@ -1,16 +1,24 @@
 # chapter-10-team-project
-Team member 1, Team member 2, Team member 3
+Liam Dowell, Braxton Hartley
 
-## <program_name> Description
-Here is where you describe what the program does
+## <chapter-10-team-project> Shop
+A shop where you controll sales and inventory
 
 ### <program_name> Flowchart
 ```mermaid
 graph TD;
-  A-->B;
-  A-->C;
-  A-->D;
-  A-->E;
+  Main-->Inventory;
+  Main-->Retail;
+  Inventory-->Display;
+  Inventory-->Add;
+  Inventory-->write;
+  Inventory-->End;
+  Retail-->Display_cart;
+  Retail-->Display_item;
+  Retail-->Purchase_item;
+  Retail-->Start_over;
+  Retail-->Check_out;
+  Retail-->Exit_main;
 ```
 
 #### Function Diagrams
