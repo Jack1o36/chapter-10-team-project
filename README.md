@@ -28,7 +28,7 @@ graph TD;
 | Accepts no arguements    | It calls retail and inventory |              |
 
 ***
-| `inventory`    |               |     author   |
+| `inventory`    |               |     Liam Dowell  |
 | ------------------ | ------------- | ------------ |
 | accepts no arguements | runs the display, add, write, and end inventory  |   pushes inventory to a dat file           |
 
