@@ -34,10 +34,8 @@ graph TD;
 
 ***
 
-| `function name2`    |               |     author   |
+| `Retail`    |               |     Braxton Hartley   |
 | ------------------ | ------------- | ------------ |
-| `argument:type`    | takes input from the user for ____  |              |
-| `time:integer`     | calculates ______  | outputs ____             |
-| `name:string`      | takes input for name ___ | returns total |
+|  No arguments   | it will display what is in cart, what is being sold, let you purchase, restart, check out  |    It lets you shop and edits the inventory          |
 ***
 
