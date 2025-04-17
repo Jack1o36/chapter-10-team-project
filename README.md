@@ -23,15 +23,21 @@ graph TD;
 
 #### Function Diagrams
 
-| `function name1`    |               |  author     |
+| `Menu`    |               |  Liam Dowell    |
 | ------------------ | ------------- | ------------ |
-| `argument:type`    | takes input from the user for ____  |              |
-| `time:integer`     | calculates ______  | outputs ____             |
-| `name:string`      | takes input for name ___ | returns total |
+| Accepts no arguements    | It calls retail and inventory |              |
+
 ***
+| `inventory`    |               |     author   |
+| ------------------ | ------------- | ------------ |
+| accepts no arguements | runs the display, add, write, and end inventory  |   pushes inventory to a dat file           |
+
+***
+
 | `function name2`    |               |     author   |
 | ------------------ | ------------- | ------------ |
 | `argument:type`    | takes input from the user for ____  |              |
 | `time:integer`     | calculates ______  | outputs ____             |
 | `name:string`      | takes input for name ___ | returns total |
 ***
+
