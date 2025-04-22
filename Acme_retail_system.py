@@ -12,17 +12,41 @@ def main():
         main()
     else:
         if choice == 1:
-            inventory_menu()
+            password = input("Enter the inventory control password: ")
+            if password == 'heisenberg':
+                inventory_menu()
+            else:
+                print("Invalid")
         else:
             retail_menu()
 def inventory_menu():
     #inventory_menu accepts no arugements
     #it asks the users what they want to run
     #it runs the function the user wanted to run
-    pass
+    print("Welcome to the ACME inventory control system.")
+    print("Please select an action from the following:")
+    print()
+    print("\nPress 1 to display the current inventory.")
+    print("\nPress 2 to add inventory items to the current inventory.")
+    print("\nPress 3 to save the inventory.")
+    print("\nPress 4 to exit.")
+    choice = input("Select an action (1, 2, or 3. Press 4 to EXIT): ")
+    if choice >= 5 or choice <= 0:
+        print("Invalid")
+    else:
+        while choice != 4:
+            if choice == 1:
+                display_inventory()
+            elif choice == 2:
+                add_inventory()
+            elif choice == 3:
+                write_invetory_data()
+        print("Bye")
+            
+            
 def display_inventory():
     #display inventory accpets no arguements
-    #it displays inventory.txt
+    #it displays inventory.dat
     pass
 def add_inventory():
     #add inventory accepts no arguements
