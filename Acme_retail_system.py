@@ -1,4 +1,5 @@
 #Acme Retail System
+import pickle
 def main():
     #main accepts no arguements
     #main runs every program
@@ -47,15 +48,28 @@ def inventory_menu():
 def display_inventory():
     #display inventory accpets no arguements
     #it displays inventory.dat
-    pass
+    end_of_file = False
+    infile = open('inventory.dat', 'rb')
+    while not end_of_file:
+        try:
+            item = pickle.load(infile)
+            display_data(item)
+        except EOFError:
+            end_of_file = True
+    infile.close()
 def add_inventory():
     #add inventory accepts no arguements
     #you can add to the inventory
-    pass
+    
 def write_inventory_data():
     #write_inventory_data accepts no arguements
     #it writes the inventory data on the dat file to save it
-    pass
+    again = 'y'
+    outfile = open('info.dat', 'ab')
+    while again.lower() == 'y':
+        save_data(outfile)
+        again = input("Enter more data: (y/n): ")
+    outfile.close()
     
 def retail_menu():
     pass
