@@ -1,6 +1,7 @@
 #Acme Retail System
 import pickle
 import retail_item
+import cash_register
 def main():
     #main accepts no arguements
     #main runs every program
