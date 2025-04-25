@@ -1,4 +1,4 @@
-class retail_item:
+class Retail_item:
     
     def __init__(self, item, unit, price):
         self.__item = item
@@ -15,10 +15,10 @@ class retail_item:
         self.__price = price
         
     def get_item(self):
-        return item
+        return self.__item
     
     def get_unit(self):
-        return unit
+        return self.__unit
     
     def get_price(self):
-        return price
+        return self.__price
