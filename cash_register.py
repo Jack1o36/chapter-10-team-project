@@ -21,11 +21,14 @@ class CashRegister:
             print(f"this is item {item}")
             total += prices[item]
             print(f"this is total {total}")
-        pass
+        return total
     
-    def get_cart(self, cart):
-        pass
+    def get_cart(self):
+        print(f"This is the inventory, {inventory}")
+        return inventory
     
     def empty(self):
-        pass
+        inventory.clear()
+        prices.clear()
+        return inventory, prices
     
