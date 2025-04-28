@@ -96,7 +96,6 @@ def write_inventory_data(units, prices, items):
         pickle.dump(item, outfile)
 def retail_menu():
     pass
-
 def display_cart():
     pass
 
