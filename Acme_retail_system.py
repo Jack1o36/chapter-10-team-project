@@ -4,6 +4,7 @@ import retail_item
 def main():
     #main accepts no arguements
     #main runs every program
+    inventory_choice = 0
     print("Please choose from the options below:")
     print("To access the inventory control system, press 1.")
     print("To access the retail store, press 2.")
@@ -16,7 +17,18 @@ def main():
         if choice == 1:
             password = input("Enter the inventory control password: ")
             if password == 'heisenberg':
-                inventory_menu()
+                while inventory_choice != '4':
+                    inventory_choice = inventory_menu()
+                    if inventory_choice <= 3 or inventory_choice >= 0:
+                        if inventory_choice == 1:
+                            display_inventory()
+                        elif inventory_choice == 2:
+                            units, prices, items = add_inventory()
+                        elif inventory_choice == 3:
+                            write_inventory_data(units, prices, items)
+                    else:
+                        print("INVALID")
+                print("Bye")
             else:
                 print("Invalid")
         else:
@@ -33,20 +45,9 @@ def inventory_menu():
     print("Press 2 to add inventory items to the current inventory.")
     print("Press 3 to save the inventory.")
     print("Press 4 to exit.")
-    while choice >= 0 and choice <= 5:
-        choice = int(input("Select an action (1, 2, or 3. Press 4 to EXIT): "))
-        while choice != 4:
-            if choice == 1:
-                display_inventory()
-            elif choice == 2:
-                add_inventory()
-            elif choice == 3:
-                write_inventory_data(units, prices)
-                    
-        print("bye")
-    print("INVALID")
-            
-            
+    inventory_choice = int(input("Select an action (1, 2, or 3. Press 4 to EXIT): "))
+    return inventory_choice
+    main()
 def display_inventory():
     #display inventory accpets no arguements
     #it displays inventory.dat
@@ -55,17 +56,22 @@ def display_inventory():
     while not end_of_file:
         try:
             item = pickle.load(infile)
-            display_data(item)
+            print(item)
         except EOFError:
             end_of_file = True
     infile.close()
+    
+    
 def add_inventory():
     #add inventory accepts no arguements
     #you can add to the inventory
+    count = 0
+    items = {}
     units = {}
     prices = {}
     again = 'y'
     while again == 'y':
+        count += 1
         item = input(f"Enter an item description: ")
         unit = input(f"Enter the number of units for {item}: ")
         price = input(f"Enter the price per unit for {item}: ")
@@ -73,22 +79,21 @@ def add_inventory():
         classitem = inventory.get_item()
         classunit = inventory.get_unit()
         classprice = inventory.get_price()
+        items[classitem] = count
         units[classitem] = classunit
         prices[classitem] = classprice
         again = input("Enter another item (y/n)? ")
-    return units, prices
+    return units, prices, items
     inventory_menu()
     
     
-def write_inventory_data(units, prices):
-    #write_inventory_data accepts units and prices
+def write_inventory_data(units, prices, items):
+    #write_inventory_data inventory
     #it writes the inventory data on the dat file to save it
-    again = 'y'
-    outfile = open('info.dat', 'ab')
-    while again.lower() == 'y':
-        save_data(outfile)
-        again = input("Enter more data: (y/n): ")
-    outfile.close()
+    count = 0
+    outfile = open('inventory.dat', 'ab')
+    for item in items:
+        pickle.dump(item, outfile)
 def retail_menu():
     pass
 
