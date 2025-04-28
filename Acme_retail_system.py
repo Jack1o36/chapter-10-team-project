@@ -91,10 +91,47 @@ def write_inventory_data(units, prices):
         again = input("Enter more data: (y/n): ")
     outfile.close()
 def retail_menu():
-    pass
+    print("Welcome to the ACME PoS retail system")
+    print("Please choose from the following items:")
+    print("\n1 - View cart")
+    print("\n2 - Display items for sale")
+    print("\n3 - Purchase item")
+    print("\n4 - Empty cart and start over")
+    print("\n5 - Check out")
+    print("\n6 - EXIT to main")
+    choice = input("Please enter a selection: ")
+    print("--------------------------------------")
+    
+    while choice < 1 or choice > 8:
+        print("Invalid choice")
+        choice = int(main_menu())
+        #If elses I lost the ability for exit at the bottom so I just removed the ability to exit salts
+    while choice != 7:
+        if choice == 1:
+            display_cart()
+        elif choice == 2:
+            display_item()
+        elif choice == 3:
+            purchase_item()
+        elif choice == 4:
+            empty_cart()
+        elif choice == 5:
+            check_out()
+        elif choice == 6:
+            break
+        choice = int(main_menu())
+
 
 def display_cart():
-    pass
+    #I will eventually make two dictionaries which this will read and then
+    #relate two items to it.
+    units = {}
+    if len(units) == 0:
+        print("Your cart is empty")
+    else:
+        #this is where I plan to have where it actually
+        #tries to read the dicitonaries
+        print("I guess it isn't empty")
     
 def display_item():
     pass
