@@ -11,6 +11,38 @@ def test1():
     test1.write(price)
     test1.close()
     
+def test2():
+    test2 = open("test2.dat", 'ab')
+    name = input("enter name")
+    unit = input("how many?")
+    price = input("the cost")
+    pickle.dump(name, test2)
+    pickle.dump(unit, test2)
+    pickle.dump(price, test2)
+    test2.close()
+
+def test2_part2():
+    test2 = open("test2.dat", "rb")
+    while True:
+        try:
+            name = pickle.load(test2)
+            units = pickle.load(test2)
+            price = pickle.load(test2)
+            print(name)
+            print(units)
+            print(price)
+        except EOFError:
+            break
+            
+test3():
+    test3 = 
+    
+    
+    
+    
+    
+    
+    
 def write_coffee():
     another = 'y'
     coffee_file = open("coffee.txt", "a")

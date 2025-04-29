@@ -2,6 +2,7 @@
 import pickle
 import retail_item
 import cash_register
+
 def main():
     #main accepts no arguements
     #main runs every program
@@ -22,6 +23,7 @@ def main():
                 print("Invalid")
         else:
             retail_menu()
+            
 def inventory_menu():
     #inventory_menu accepts no arugements
     #it asks the users what they want to run
@@ -60,6 +62,7 @@ def display_inventory():
         except EOFError:
             end_of_file = True
     infile.close()
+    
 def add_inventory():
     #add inventory accepts no arguements
     #you can add to the inventory
@@ -90,7 +93,9 @@ def write_inventory_data(units, prices):
         save_data(outfile)
         again = input("Enter more data: (y/n): ")
     outfile.close()
+    
 def retail_menu():
+    
     print("Welcome to the ACME PoS retail system")
     print("Please choose from the following items:")
     print("\n1 - View cart")
