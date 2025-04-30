@@ -60,7 +60,13 @@ def test3_part2():
     print(item)
     print(prices)
     
-    
+item = {}
+shoes.class = 12, 20
+#instantiate an object
+#thing = Classname(attribute, attribute, etc..)
+#this creates an object of the class named thing
+#in this case, thing will have the attributes of "shirt", 12, 20
+item['shirt'] = shoes
     
 def write_coffee():
     another = 'y'
