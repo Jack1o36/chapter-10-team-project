@@ -34,12 +34,31 @@ def test2_part2():
         except EOFError:
             break
             
-test3():
-    test3 = 
+def test3():
+    test3 = open("test3.dat", "ab")
+    item = {}
+    prices = {}
+    name = input("name")
+    units = input("units")
+    price = input("price")
+    item[name] = units
+    prices[name] = price
+    print(item)
+    print(prices)
+    pickle.dump(item, test3)
+    pickle.dump(prices, test3)
+    test3.close()
     
-    
-    
-    
+def test3_part2():
+    test3 = open('test3.dat', "rb")
+    while True:
+        try:
+            item = pickle.load(test3)
+            prices =pickle.load(test3)
+        except EOFError:
+            break
+    print(item)
+    print(prices)
     
     
     
@@ -58,3 +77,4 @@ def write_coffee():
         another = input("\nDo you want to enter another? (y to continue): ")
     coffee_file.close()
     print("all data saved to coffee.txt")
+test3_part2()
