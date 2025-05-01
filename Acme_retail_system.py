@@ -5,6 +5,7 @@ import cash_register
 def main():
     #main accepts no arguements
     #main runs every program
+    inventory_choice = 0
     print("Please choose from the options below:")
     print("To access the inventory control system, press 1.")
     print("To access the retail store, press 2.")
@@ -16,8 +17,19 @@ def main():
     else:
         if choice == 1:
             password = input("Enter the inventory control password: ")
-            if password == 'heisenberg':
-                inventory_menu()
+            if password == 'a':
+                while inventory_choice != '4':
+                    inventory_choice = inventory_menu()
+                    if inventory_choice <= 3 or inventory_choice >= 0:
+                        if inventory_choice == 1:
+                            display_inventory()
+                        elif inventory_choice == 2:
+                             inventory = add_inventory()
+                        elif inventory_choice == 3:
+                            write_inventory_data(inventory)
+                    else:
+                        print("INVALID")
+                print("Bye")
             else:
                 print("Invalid")
         else:
@@ -34,65 +46,59 @@ def inventory_menu():
     print("Press 2 to add inventory items to the current inventory.")
     print("Press 3 to save the inventory.")
     print("Press 4 to exit.")
-    while choice >= 0 and choice <= 5:
-        choice = int(input("Select an action (1, 2, or 3. Press 4 to EXIT): "))
-        while choice != 4:
-            if choice == 1:
-                display_inventory()
-            elif choice == 2:
-                add_inventory()
-            elif choice == 3:
-                write_inventory_data(units, prices)
-                    
-        print("bye")
-    print("INVALID")
-            
-            
+    inventory_choice = int(input("Select an action (1, 2, or 3. Press 4 to EXIT): "))
+    return inventory_choice
+    main()
 def display_inventory():
     #display inventory accpets no arguements
     #it displays inventory.dat
-    end_of_file = False
     infile = open('inventory.dat', 'rb')
-    while not end_of_file:
+    print("Here is the current status of the inventory: ")
+    print()
+    while True:
         try:
-            item = pickle.load(infile)
-            display_data(item)
+            data = pickle.load(infile)
+            for object_ in data:
+                item = data[object_]
+                units = item.get_unit()
+                price = item.get_price()
+                print(f"Description: {item}")
+                print(f"Unit: {units}")
+                print(f"Price: {price}")
+                print()
         except EOFError:
-            end_of_file = True
+            break
     infile.close()
+    
+    
 def add_inventory():
     #add inventory accepts no arguements
     #you can add to the inventory
-    units = {}
-    prices = {}
+    count = 0
+    items = {}
     again = 'y'
     while again == 'y':
+        count += 1
         item = input(f"Enter an item description: ")
         unit = input(f"Enter the number of units for {item}: ")
         price = input(f"Enter the price per unit for {item}: ")
         inventory = retail_item.Retail_item(item, unit, price)
-        classitem = inventory.get_item()
-        classunit = inventory.get_unit()
-        classprice = inventory.get_price()
-        units[classitem] = classunit
-        prices[classitem] = classprice
+        items[item] = inventory
         again = input("Enter another item (y/n)? ")
-    return units, prices
+    return items
     inventory_menu()
     
     
-def write_inventory_data(units, prices):
-    #write_inventory_data accepts units and prices
+def write_inventory_data(items):
+    #write_inventory_data inventory
     #it writes the inventory data on the dat file to save it
-    again = 'y'
-    outfile = open('info.dat', 'ab')
-    while again.lower() == 'y':
-        save_data(outfile)
-        again = input("Enter more data: (y/n): ")
+    outfile = open('inventory.dat', 'wb')
+    pickle.dump(items, outfile)
+        
     outfile.close()
+    print(f"All items have been saved onto inventory.dat.")
 def retail_menu():
     pass
-
 def display_cart():
     pass
 
