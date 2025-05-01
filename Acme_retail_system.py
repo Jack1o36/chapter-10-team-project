@@ -99,8 +99,19 @@ def write_inventory_data(items):
     print(f"All items have been saved onto inventory.dat.")
 def retail_menu():
     pass
-def display_cart():
-    pass
+def display_cart(item, prices):
+    #I will eventually make two dictionaries which this will read and then
+    #relate two items to it.
+    if len(item) == 0:
+        print("Your cart is empty")
+    else:
+        #this is where I plan to have where it actually
+        #tries to read the dicitonaries
+        for items in item:
+            print(f"Item: {item}")
+            print(f"Units: {item[items]}")
+            print(f"price: {prices[items]}")
+        print("I guess it isn't empty")
 
 def display_item():
     pass
