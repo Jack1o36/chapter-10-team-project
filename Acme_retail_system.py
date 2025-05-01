@@ -59,6 +59,7 @@ def display_inventory():
             data = pickle.load(infile)
             for object_ in data:
                 item = data[object_]
+                units = item.get_unit()
                 price = item.get_price()
                 print(f"Description: {item}")
                 print(f"Unit: {units}")
