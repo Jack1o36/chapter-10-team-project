@@ -59,14 +59,14 @@ def test3_part2():
             break
     print(item)
     print(prices)
+    test3.close()
     
-item = {}
-shoes.class = 12, 20
+
 #instantiate an object
 #thing = Classname(attribute, attribute, etc..)
 #this creates an object of the class named thing
 #in this case, thing will have the attributes of "shirt", 12, 20
-item['shirt'] = shoes
+#item['shirt'] = shoes
     
 def write_coffee():
     another = 'y'
@@ -83,4 +83,3 @@ def write_coffee():
         another = input("\nDo you want to enter another? (y to continue): ")
     coffee_file.close()
     print("all data saved to coffee.txt")
-test3_part2()

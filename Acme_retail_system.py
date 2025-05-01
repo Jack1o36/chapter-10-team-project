@@ -96,6 +96,15 @@ def write_inventory_data(units, prices):
     
 def retail_menu():
     
+    test3 = open('test3.dat', "rb")
+    while True:
+        try:
+            item = pickle.load(test3)
+            prices =pickle.load(test3)
+        except EOFError:
+            break
+    test3.close()
+    
     print("Welcome to the ACME PoS retail system")
     print("Please choose from the following items:")
     print("\n1 - View cart")
@@ -104,7 +113,7 @@ def retail_menu():
     print("\n4 - Empty cart and start over")
     print("\n5 - Check out")
     print("\n6 - EXIT to main")
-    choice = input("Please enter a selection: ")
+    choice = int(input("Please enter a selection: "))
     print("--------------------------------------")
     
     while choice < 1 or choice > 8:
@@ -113,7 +122,7 @@ def retail_menu():
         #If elses I lost the ability for exit at the bottom so I just removed the ability to exit salts
     while choice != 7:
         if choice == 1:
-            display_cart()
+            display_cart(item, prices)
         elif choice == 2:
             display_item()
         elif choice == 3:
@@ -124,18 +133,22 @@ def retail_menu():
             check_out()
         elif choice == 6:
             break
-        choice = int(main_menu())
+        choice = int(input("Enter a choice"))
+        
 
 
-def display_cart():
+def display_cart(item, prices):
     #I will eventually make two dictionaries which this will read and then
     #relate two items to it.
-    units = {}
-    if len(units) == 0:
+    if len(item) == 0:
         print("Your cart is empty")
     else:
         #this is where I plan to have where it actually
         #tries to read the dicitonaries
+        for items in item:
+            print(f"Item: {item}")
+            print(f"Units: {item[items]}")
+            print(f"price: {prices[items]}")
         print("I guess it isn't empty")
     
 def display_item():
