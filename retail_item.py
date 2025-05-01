@@ -22,3 +22,6 @@ class Retail_item:
     
     def get_price(self):
         return self.__price
+   
+    def __str__(self):
+        return self.__item

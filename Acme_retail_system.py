@@ -16,16 +16,16 @@ def main():
     else:
         if choice == 1:
             password = input("Enter the inventory control password: ")
-            if password == 'heisenberg':
+            if password == 'a':
                 while inventory_choice != '4':
                     inventory_choice = inventory_menu()
                     if inventory_choice <= 3 or inventory_choice >= 0:
                         if inventory_choice == 1:
                             display_inventory()
                         elif inventory_choice == 2:
-                            units, prices, items = add_inventory()
+                             inventory = add_inventory()
                         elif inventory_choice == 3:
-                            write_inventory_data(units, prices, items)
+                            write_inventory_data(inventory)
                     else:
                         print("INVALID")
                 print("Bye")
@@ -51,14 +51,21 @@ def inventory_menu():
 def display_inventory():
     #display inventory accpets no arguements
     #it displays inventory.dat
-    end_of_file = False
     infile = open('inventory.dat', 'rb')
-    while not end_of_file:
+    print("Here is the current status of the inventory: ")
+    print()
+    while True:
         try:
-            item = pickle.load(infile)
-            print(item)
+            data = pickle.load(infile)
+            for object_ in data:
+                item = data[object_]
+                price = item.get_price()
+                print(f"Description: {item}")
+                print(f"Unit: {units}")
+                print(f"Price: {price}")
+                print()
         except EOFError:
-            end_of_file = True
+            break
     infile.close()
     
     
@@ -67,8 +74,6 @@ def add_inventory():
     #you can add to the inventory
     count = 0
     items = {}
-    units = {}
-    prices = {}
     again = 'y'
     while again == 'y':
         count += 1
@@ -76,24 +81,20 @@ def add_inventory():
         unit = input(f"Enter the number of units for {item}: ")
         price = input(f"Enter the price per unit for {item}: ")
         inventory = retail_item.Retail_item(item, unit, price)
-        classitem = inventory.get_item()
-        classunit = inventory.get_unit()
-        classprice = inventory.get_price()
-        items[classitem] = count
-        units[classitem] = classunit
-        prices[classitem] = classprice
+        items[item] = inventory
         again = input("Enter another item (y/n)? ")
-    return units, prices, items
+    return items
     inventory_menu()
     
     
-def write_inventory_data(units, prices, items):
+def write_inventory_data(items):
     #write_inventory_data inventory
     #it writes the inventory data on the dat file to save it
-    count = 0
-    outfile = open('inventory.dat', 'ab')
-    for item in items:
-        pickle.dump(item, outfile)
+    outfile = open('inventory.dat', 'wb')
+    pickle.dump(items, outfile)
+        
+    outfile.close()
+    print(f"All items have been saved onto inventory.dat.")
 def retail_menu():
     pass
 def display_cart():
