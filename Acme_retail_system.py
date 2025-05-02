@@ -97,24 +97,77 @@ def write_inventory_data(items):
         
     outfile.close()
     print(f"All items have been saved onto inventory.dat.")
+    
 def retail_menu():
-    pass
-def display_cart(item, prices):
-    #I will eventually make two dictionaries which this will read and then
-    #relate two items to it.
-    if len(item) == 0:
-        print("Your cart is empty")
+    cart = {}
+    infile = open("inventory.dat", "rb")
+    
+    while True:
+        try:
+            data = pickle.load(infile)
+            for object_ in data:
+                item = data[object_]
+                units = item.get_unit()
+                price = item.get_price()
+                print(f"Description: {item}")
+                print(f"Unit: {units}")
+                print(f"Price: {price}")
+                print()
+        except EOFError:
+            break
+        
+    print("Welcome to the ACME PoS retail system")
+    print("Please choose from the following items:")
+    print("\n1 - View cart")
+    print("\n2 - Display items for sale")
+    print("\n3 - Purchase item")
+    print("\n4 - Empty cart and start over")
+    print("\n5 - Check out")
+    print("\n6 - EXIT to main")
+    choice = int(input("Please enter a selection: "))
+    print("--------------------------------------")
+    
+    while choice < 1 or choice > 8:
+        print("Invalid choice")
+        choice = int(main_menu())
+        #If elses I lost the ability for exit at the bottom so I just removed the ability to exit salts
+    while choice != 7:
+        if choice == 1:
+            display_cart(cart)
+        elif choice == 2:
+            display_item()
+        elif choice == 3:
+            purchase_item()
+        elif choice == 4:
+            empty_cart()
+        elif choice == 5:
+            check_out()
+        elif choice == 6:
+            break
+        choice = int(input("Enter a choice"))
+    
+def display_cart(cart):
+    if len(cart) == 0:
+        print("the cart is empty")
     else:
-        #this is where I plan to have where it actually
-        #tries to read the dicitonaries
-        for items in item:
-            print(f"Item: {item}")
-            print(f"Units: {item[items]}")
-            print(f"price: {prices[items]}")
-        print("I guess it isn't empty")
+        print("This is kinda place holder")
+        
 
 def display_item():
-    pass
+    infile = open("inventory.dat", "rb")
+    while True:
+        try:
+            data = pickle.load(infile)
+            for object_ in data:
+                item = data[object_]
+                units = item.get_unit()
+                price = item.get_price()
+                print(f"Description: {item}")
+                print(f"Unit: {units}")
+                print(f"Price: {price}")
+                print()
+        except EOFError:
+            break
 
 def purchase_item():
     pass
