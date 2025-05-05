@@ -170,7 +170,28 @@ def display_item():
             break
 
 def purchase_item():
-    pass
+    y = 'y'
+    print("Here is the current status of your inventory: ")
+    infile = open("inventory.dat", "rb")
+    while y.lower() != 'n':
+        while True:
+            try:
+                data = pickle.load(infile)
+                for object_ in data:
+                    item = data[object_]
+                    units = item.get_unit()
+                    price = item.get_price()
+                    print(f"Description: {item}")
+                    print(f"Unit: {units}")
+                    print(f"Price: {price}")
+                    print()
+            except EOFError:
+                break
+        purchase = input("what item would you like to purchase?")
+        
+        y = input("Would you like another purchase y/n")
+    cart[purchase] += data[item.get_price()]
+    print(cart)
 
 def empty_cart():
     pass

@@ -2,18 +2,40 @@
 
 class CashRegister:
     
-    def __init__(self, item, unit, price):
-        self.__item = item
-        self.__unit = unit
-        self.__price = price
-        #self.__price = total
-        #self.__cart = cart
+    def __init__(self):
+        self.cart = {}
         
-    def get_item(self):
-        return self.__item
+    def purchase_item(self):
+        self.cart[item] = purchase
+        return cart
+    def get_total(self):
+        
+    def get_cart(self):
     
-    def get_unit(self):
-        return self.__unit
+    def empty(self):
+        self.cart = {}
+
+
+
+class Dog:
     
-    def get_price(self):
-        return self.__price
+    def __init__(self, name, color):
+        
+        self.name = name
+        self.color = color
+        
+    def method(self):
+        
+        print(self.name)
+        
+    def changeName(self, newName):
+        
+        self.name = newName
+        
+    
+        
+dog1 = Dog("happy", "blue")
+dog1.changeName("bubby")
+
+dog1.method()
+
